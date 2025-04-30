@@ -10,7 +10,6 @@ def test_guest_can_go_to_contacts_page(browser):
     page.open()
     page.should_be_contacts_block()
     page.click_contacts_block()
-    # time.sleep(2)
     page.go_to_contacts_page()
     # time.sleep(10)
 
