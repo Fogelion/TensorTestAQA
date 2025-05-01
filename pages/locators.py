@@ -8,8 +8,9 @@ class SbisMainPageLocators():
 class SbisContactsPageLocators():
     BANNER_TENSOR = (By.CSS_SELECTOR, "#contacts_clients a.sbisru-Contacts__logo-tensor")
     REGION_NAME = (By.CSS_SELECTOR, ".sbisru-Contacts__relative span.sbis_ru-Region-Chooser__text.sbis_ru-link")
-    # REGIONS_LIST =
-    # REGION_KAMCHATKA =
+    REGIONS_LIST = (By.CSS_SELECTOR, ".sbis_ru-Region-Panel__header-text")
+    REGION_KAMCHATKA = (By.CSS_SELECTOR, "[title='Камчатский край']")
+    PARTNER_NAME = (By.CSS_SELECTOR, ".sbisru-Contacts-List__name")
 
 class TensorMainPageLocators():
     POWER_BLOCK = (By.XPATH, "//*[contains(@class, 'tensor_ru-Index__card-title') and contains(., 'Сила в людях')]")
