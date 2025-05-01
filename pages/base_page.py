@@ -27,6 +27,12 @@ class BasePage():
     def open(self):
         self.browser.get(self.url)
 
+    def should_be_current_url(self, expected_url, timeout=10):
+        WebDriverWait(self.browser, timeout).until(
+            EC.url_to_be(expected_url),
+            message=f"Expected URL {expected_url}, not current URL {self.browser.current_url}"
+        )
+
 
 
 

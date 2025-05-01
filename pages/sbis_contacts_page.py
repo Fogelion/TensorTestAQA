@@ -5,7 +5,7 @@ from .locators import SbisContactsPageLocators
 
 
 class SbisContactsPage(BasePage):
-    def click_banner_tensor(self):
+    def go_to_tensor(self):
         element = WebDriverWait(self.browser, 5).until(
             EC.element_to_be_clickable(SbisContactsPageLocators.BANNER_TENSOR)
         )
