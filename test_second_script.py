@@ -33,3 +33,4 @@ def test_guest_can_go_to_kamchatka(browser):
     page.should_be_changes_region(correct_region)
     page.should_be_changes_partners(partners)
     page.should_be_correct_region_url(region_name_url)
+    page.should_be_correct_region_title(correct_region)

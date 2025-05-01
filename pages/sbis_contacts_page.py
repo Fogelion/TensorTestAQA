@@ -1,5 +1,4 @@
 import time
-
 from selenium.common import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -66,6 +65,10 @@ class SbisContactsPage(BasePage):
             EC.element_to_be_clickable(SbisContactsPageLocators.REGION_NAME)
         )
         assert current_region.text == expected_region, "Region name is not correct"
+
+    def should_be_correct_region_title(self, expected_region_title):
+        current_region_title = self.browser.title
+        assert expected_region_title in current_region_title, "Region title is not correct"
 
     def should_be_correct_region_url(self, expected_region_url):
         current_region_url = self.browser.current_url
