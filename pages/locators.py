@@ -9,10 +9,9 @@ class SbisContactsPageLocators():
     BANNER_TENSOR = (By.CSS_SELECTOR, "#contacts_clients a.sbisru-Contacts__logo-tensor")
 
 class TensorMainPageLocators():
-    # POWER_BLOCK = (By.XPATH, "//p[@class='tensor_ru-Index__card-title' and contains(text(), 'Сила в людях')]")
     POWER_BLOCK = (By.XPATH, "//*[contains(@class, 'tensor_ru-Index__card-title') and contains(., 'Сила в людях')]")
-    # POWER_BLOCK = (By.CSS_SELECTOR, ".tensor_ru-Index__block4-bg p.tensor_ru-Index__card-title")
     PEOPLE_ABOUT = (By.CSS_SELECTOR, ".tensor_ru-Index__block4-bg a.tensor_ru-link")
 
-# class TensorAboutPageLocators():
-#     WORKING_BLOCK = (By.CSS_SELECTOR, "")
+class TensorAboutPageLocators():
+    WORK_BLOCK = (By.CSS_SELECTOR, ".tensor_ru-About__block3")
+    WORK_IMAGES = (By.CSS_SELECTOR, ".tensor_ru-About__block3-image")

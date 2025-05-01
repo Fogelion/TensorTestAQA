@@ -9,13 +9,6 @@ class BasePage():
         self.url = url
         self.browser.implicitly_wait(timeout)
 
-    # def is_element_present(self, how, what):
-    #     try:
-    #         self.browser.find_element(how, what)
-    #     except (NoSuchElementException):
-    #         return False
-    #     return True
-
     def is_element_present(self, how, what, timeout=10):
         try:
             WebDriverWait(self.browser, timeout).until(
@@ -32,7 +25,3 @@ class BasePage():
             EC.url_to_be(expected_url),
             message=f"Expected URL {expected_url}, not current URL {self.browser.current_url}"
         )
-
-
-
-

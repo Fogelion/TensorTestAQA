@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from .locators import TensorMainPageLocators
 
+
 class TensorMainPage(BasePage):
     def go_to_people_about(self):
         element = WebDriverWait(self.browser, 5).until(
