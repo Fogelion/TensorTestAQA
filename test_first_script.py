@@ -35,10 +35,11 @@ def test_guest_can_click_people_about(browser):
 
 def test_should_be_about_page(browser):
     link = "https://tensor.ru/"
+    correct_url = "https://tensor.ru/about"
     page = TensorMainPage(browser, link)
     page.open()
     page.go_to_people_about()
-    page.should_be_current_url("https://tensor.ru/about")
+    page.should_be_current_url(correct_url)
 
 def test_should_be_same_size_images(browser):
     link = "https://tensor.ru/about"
