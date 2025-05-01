@@ -30,12 +30,6 @@ class SbisContactsPage(BasePage):
         self.browser.execute_script("arguments[0].removeAttribute('target')", element)
         element.click()
 
-    # def open_regions_list(self):
-    #     element = WebDriverWait(self.browser, 5).until(
-    #         EC.element_to_be_clickable(SbisContactsPageLocators.REGION_NAME)
-    #     )
-    #     element.click()
-
     def open_regions_list(self):
         attempts = 0
         while attempts < 3:
@@ -72,6 +66,10 @@ class SbisContactsPage(BasePage):
             EC.element_to_be_clickable(SbisContactsPageLocators.REGION_NAME)
         )
         assert current_region.text == expected_region, "Region name is not correct"
+
+    def should_be_correct_region_url(self, expected_region_url):
+        current_region_url = self.browser.current_url
+        assert expected_region_url in current_region_url, "Region url is not correct"
 
     def should_be_regions_list(self):
         assert self.is_element_present(*SbisContactsPageLocators.REGIONS_LIST), "Regions list is not presented"
