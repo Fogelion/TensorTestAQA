@@ -1,4 +1,5 @@
 # pytest -v --tb=line test_first_script.py
+import time
 
 from .pages.sbis_main_page import SbisMainPage
 from .pages.sbis_download_page import SbisDownloadPage
@@ -13,8 +14,12 @@ from .pages.sbis_download_page import SbisDownloadPage
 
 def test_guest_can_download_web_installer(browser):
     link = "https://saby.ru/download"
+    filename = "sbisplugin-setup-web.exe"
     page = SbisDownloadPage(browser, link)
     page.open()
     page.should_be_saby_plugin_section()
     page.should_be_saby_plugin_windows_section()
-    # page.click_to_download_web_plugin()
+    page.click_to_download_web_plugin()
+    page.wait_for_download_plugin(filename)
+    page.clear_downloads_dir()
+    # time.sleep(5)
