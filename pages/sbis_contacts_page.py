@@ -76,4 +76,3 @@ class SbisContactsPage(BasePage):
 
     def should_be_regions_list(self):
         assert self.is_element_present(*SbisContactsPageLocators.REGIONS_LIST), "Regions list is not presented"
-

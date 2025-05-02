@@ -19,8 +19,8 @@ class SbisDownloadPageLocators():
                                      " contains(., 'Saby Plugin')]")
     SABY_PLUGIN_WINDOWS_SECTION = (By.XPATH, "//*[contains(@class, 'sbis_ru-DownloadNew-innerTabs__title') and"
                                      " contains(., 'Windows')]")
-    SABY_PLUGIN_DOWNLOAD_WEB = (By.XPATH, "//a[contains(@class, 'sbis_ru-DownloadNew-loadLink__link') and"
-                                          " contains(text(), 'Скачать (Exe')]")
+    SABY_PLUGIN_DOWNLOAD_WEB = (By.CSS_SELECTOR, '.sbis_ru-DownloadNew-loadLink__link.js-link'
+                                                 '[href*="sbisplugin-setup-web.exe"]')
 
 class TensorMainPageLocators():
     POWER_BLOCK = (By.XPATH, "//*[contains(@class, 'tensor_ru-Index__card-title') and contains(., 'Сила в людях')]")

@@ -4,19 +4,13 @@ from pathlib import Path
 import os
 
 
-# Определяем абсолютный путь к папке downloads
-project_dir = Path(__file__).parent  # Получаем директорию, где находится conftest.py
-download_directory = str(project_dir / "downloads")  # Папка будет создана рядом с conftest.py
-
-# Создание папки downloads, если она не существует
+project_dir = Path(__file__).parent
+download_directory = str(project_dir / "downloads")
 os.makedirs(download_directory, exist_ok=True)
-
 
 @pytest.fixture(scope="session")
 def browser():
     chrome_options = webdriver.ChromeOptions()
-
-    # Настройки для скачивания файлов
     prefs = {
         "download.default_directory": download_directory,
         "download.prompt_for_download": False,
@@ -30,8 +24,6 @@ def browser():
     }
 
     chrome_options.add_experimental_option("prefs", prefs)
-
-    # Аргументы для обхода блокировок
     chrome_options.add_argument('--allow-running-insecure-content')
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--safebrowsing-disable-download-protection')
@@ -46,8 +38,6 @@ def browser():
 
     print("\nstart Browser")
     browser = webdriver.Chrome(options=chrome_options)
-
-    # Установка скрытого параметра для автоматического скачивания
     browser.execute_cdp_cmd(
         "Page.setDownloadBehavior",
         {

@@ -13,6 +13,15 @@ class BasePage():
         self.browser.implicitly_wait(timeout)
         self.download_dir = str(Path(__file__).parent.parent / "downloads")
 
+    def clear_downloads_dir(self):
+        for file in os.listdir(self.download_dir):
+            file_path = os.path.join(self.download_dir, file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception:
+                print("File cannot be deleted")
+
     def is_element_present(self, how, what, timeout=10):
         try:
             WebDriverWait(self.browser, timeout).until(
@@ -30,21 +39,22 @@ class BasePage():
             message=f"Expected URL {expected_url}, not current URL {self.browser.current_url}"
         )
 
-    def wait_for_download_plugin(self, filename, timeout=20):
+    def wait_for_download_plugin(self, filename, expected_size=None, timeout=20):
         file_path = os.path.join(self.download_dir, filename)
         end_time = time.time() + timeout
         while time.time() < end_time:
             if os.path.exists(file_path):
                 if not filename.endswith('.crdownload') and not filename.endswith('.tmp'):
-                    return
+                    actual_size = os.path.getsize(file_path)
+                    if expected_size is None:
+                        return
+                    min_size = expected_size * 0.99
+                    max_size = expected_size * 1.01
+                    if min_size <= actual_size <= max_size:
+                        return
+                    else:
+                        raise AssertionError(
+                            "File size does not match the expected size"
+                        )
             time.sleep(1)
         raise TimeoutError("Plugin does not download in time")
-
-    def clear_downloads_dir(self):
-        for file in os.listdir(self.download_dir):
-            file_path = os.path.join(self.download_dir, file)
-            try:
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
-            except Exception:
-                print("File cannot be deleted")
